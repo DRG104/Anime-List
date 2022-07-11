@@ -72,7 +72,7 @@ This project aims to use the Jikan API, the unofficial mynanimelist API to allow
     - Implement changes made from the edit page
 - Destroy
     - Delete a list from a user’s session
-    - Once all the routes are completed, style the pages (maybe with bootstrap)
+- Once all the routes are completed, style the pages (maybe with bootstrap)
 
 ## Initial model ideas
 - Seed.js will parse through Jikan to create a one time request for all anime
