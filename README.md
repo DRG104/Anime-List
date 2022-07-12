@@ -89,4 +89,4 @@ This project aims to use the Jikan API, the unofficial mynanimelist API to allow
 ![wireframe ex4](wireframes/p2wireframe4.jpg)
 ![wireframe ex5](wireframes/p2wireframe5.jpg)
 ![wireframe ex6](wireframes/p2wireframe6.jpg)
-![ERD diagram](wireframes/ERD-models.jpg)
+![ERDv2](wireframes/ERDv2.jpg)
