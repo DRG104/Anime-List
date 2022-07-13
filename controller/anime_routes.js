@@ -14,6 +14,7 @@ router.post('/show', (req, res) => {
         res.render('anime/index', {data})
     })
     .catch(err => {
+        console.log(api)
         res.json(err)
     })
 })
