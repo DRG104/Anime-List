@@ -110,7 +110,7 @@ router.get('/logout', (req, res) => {
         console.log('this is the error in logout', ret)
         console.log('session has been destroyed')
         console.log(req.session)
-        res.redirect('/fruits')
+        res.redirect('/anime')
     })
 })
 

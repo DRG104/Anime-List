@@ -14,13 +14,14 @@ router.post('/show', (req, res) => {
         res.render('anime/index', {data})
     })
     .catch(err => {
-        console.log(api)
+        console.log("api")
         res.json(err)
     })
 })
 
 
 router.get('/', (req, res) => {
+    console.log("Getting index")
     res.render('anime/index')
 })
 
