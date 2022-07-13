@@ -27,6 +27,8 @@ app.use(express.static('public'))
 // bring in our session middleware
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
+const animeRoutes = require('./controller/anime_routes')
+const userRoutes = require('./controller/user_routes')
 
 // here's the middle ware that sets up our sessions
 app.use(
@@ -39,6 +41,14 @@ app.use(
 		resave: false
 	})
 )
+
+
+////////////////////////////////////////////
+// Routes
+////////////////////////////////////////////
+// first parameter is a string where routes are going, second is the name of the variable
+app.use('/anime', animeRoutes)
+app.use('/users', userRoutes)
 
 
 // localhost:3000/
