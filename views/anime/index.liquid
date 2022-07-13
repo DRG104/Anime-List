@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container">
-    <form action="/weather" method="POST">
+    <form action="/anime" method="POST">
         <fieldset class="start">
             <legend>Search Anime</legend>
             <label>Anime</label>
@@ -17,5 +17,8 @@
             >
         </fieldset>
     </form>
+</div>
+<div>
+    Mal ID is: {{data.mal_id}}
 </div>
 {% endblock %}
