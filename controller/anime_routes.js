@@ -14,9 +14,9 @@ router.post('/show', (req, res) => {
     const api = `https://api.jikan.moe/v4/anime?q=${search}&sfw`
     fetch(api)
     .then(res => res.json())
-    .then(data => {
-        res.render('anime/show', { data })
-        console.log(data)
+    .then(results => {
+        res.render('anime/show', { results: data })
+        console.log(results)
     })
     .catch(err => {
         res.json(err)
