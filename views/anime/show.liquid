@@ -2,8 +2,14 @@
 
 {% block content %}
 
-<h3>Info is:{{data.data[0].mal_id}}</h3>
-<h3>Info is:{{data.data[0].images.jpg.image_url}}</h3>
-<h3>Info is:{{data.data[0].title}}</h3>
+    {% for item in anime %}
+
+        <div class="card" style="width: 18rem">
+            <h3>Info is:{{item.data[i].mal_id}}</h3>
+            <!-- <h3>Info is:{{data.data[0].images.jpg.image_url}}</h3> -->
+            <h3>Info is:{{item.data[i].title}}</h3>
+            <img src="{{item.data[i].images.jpg.image_url}}">
+        </div>
+    {% endfor %}
 
 {% endblock %}

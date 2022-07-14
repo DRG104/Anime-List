@@ -14,10 +14,10 @@ router.post('/show', (req, res) => {
     const api = `https://api.jikan.moe/v4/anime?q=${search}&sfw`
     fetch(api)
     .then(res => res.json())
-    .then(data => {
-        res.render('anime/show', { data })
+    .then(anime => {
+        res.render('anime/show', { anime })
         // JSON response is in an array
-        console.log(data.data[1].mal_id)
+        console.log(anime.data[1])
     })
     .catch(err => {
         res.json(err)
