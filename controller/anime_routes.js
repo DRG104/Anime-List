@@ -16,7 +16,7 @@ router.post('/show', (req, res) => {
     .then(res => res.json())
     .then(data => {
         res.render('anime/show', { data })
-        console.log("/////")
+        // JSON response is in an array
         console.log(data.data[1].mal_id)
     })
     .catch(err => {
