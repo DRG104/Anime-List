@@ -2,13 +2,17 @@
 
 {% block content %}
 
-    {% for item in anime %}
-
+    {% for i in anime %}
+        {% if i === anime.length - 1 %}
+            {% continue %}
+            {% else %}
+            {{ i }}
+            {% endif %}
         <div class="card" style="width: 18rem">
-            <h3>Info is:{{item.data[i].mal_id}}</h3>
+            <h3>Mal ID is: {{anime.data[i].mal_id}}</h3>
             <!-- <h3>Info is:{{data.data[0].images.jpg.image_url}}</h3> -->
-            <h3>Info is:{{item.data[i].title}}</h3>
-            <img src="{{item.data[i].images.jpg.image_url}}">
+            <h3>Anime Title is:{{anime.data[i].title}}</h3>
+            <img src="{{anime.data[i].images.jpg.image_url}}">
         </div>
     {% endfor %}
 
