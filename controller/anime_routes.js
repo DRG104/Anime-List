@@ -15,7 +15,7 @@ router.post('/show', (req, res) => {
     fetch(api)
     .then(res => res.json())
     .then(anime => {
-        res.render('anime/show', { anime })
+        res.render('anime/show', {anime})
         // JSON response is in an array
         console.log(anime.data[1])
     })

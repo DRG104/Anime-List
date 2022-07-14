@@ -1,19 +1,18 @@
 {% layout 'layout.liquid' %}
 
 {% block content %}
-
-    {% for i in anime %}
-        {% if i === anime.length - 1 %}
-            {% continue %}
-            {% else %}
-            {{ i }}
-            {% endif %}
+ <!-- for loop inside for loop? -->
+ <!-- <script>console.log(anime.data[1])</script> -->
+ 
+ {% for i in anime.data (0..24) %}
+    <!-- {% for data in (0..0) %} -->
         <div class="card" style="width: 18rem">
-            <h3>Mal ID is: {{anime.data[i].mal_id}}</h3>
+            <h3>Mal ID is: 1 {{anime.data[data].mal_id}}</h3>
             <!-- <h3>Info is:{{data.data[0].images.jpg.image_url}}</h3> -->
-            <h3>Anime Title is:{{anime.data[i].title}}</h3>
-            <img src="{{anime.data[i].images.jpg.image_url}}">
+            <h3>Anime Title is:{{anime.data[data].title}}</h3>
+            <img src="{{anime.data[data].images.jpg.image_url}}">
         </div>
+        <!-- {% endfor %} -->
     {% endfor %}
 
 {% endblock %}
