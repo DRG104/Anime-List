@@ -20,6 +20,15 @@ const List = require('../models/list')
 ////////////////////////////////////////////
 // Routes
 ////////////////////////////////////////////
+router.post('/:animeId', (req, res) => {
+    // check mongo shell or db.collections to find animeId or userId
+    const animeId = req.params.animeId
+    req.body.author = req.session.userId
+
+    
+})
+
+
 router.post('/show', (req, res) => {
     const search = req.body.anime
     const api = `https://api.jikan.moe/v4/anime?q=${search}&sfw`
