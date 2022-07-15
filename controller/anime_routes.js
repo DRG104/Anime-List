@@ -1,14 +1,25 @@
+/////////////////////////////////
+// Import dependencies
+/////////////////////////////////
 const express = require('express')
+const { listIndexes } = require('../models/user')
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args))
 
-// making a router
+////////////////////////////////////////////
+// Making a router
+////////////////////////////////////////////
 const router = express.Router()
 
-// router.post('/show', (req, res) => {
-//     res.render('anime/show')
-// })
+////////////////////////////////////////////
+// Importing models
+////////////////////////////////////////////
+const List = require('../models/list')
 
 
+
+////////////////////////////////////////////
+// Routes
+////////////////////////////////////////////
 router.post('/show', (req, res) => {
     const search = req.body.anime
     const api = `https://api.jikan.moe/v4/anime?q=${search}&sfw`
@@ -42,6 +53,16 @@ router.get('/', (req, res) => {
     })
 })
 
+
+router.get('/mine', (req, res) => {
+    listIndexes.find({ owner: req.session.userId })
+    .then(anime => {
+        res.render('anime/index', {anime})
+    })
+    .catch(err => {
+        res.json(err)
+    })
+})
 
 // router.get('/', (req, res) => {
 //     // const search = req.body
