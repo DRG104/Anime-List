@@ -32,6 +32,9 @@ router.post('/show', (req, res) => {
 // .then(res => res.text())
 // .then(text => console.log(text))
 
+
+
+
 router.get('/', (req, res) => {
     // const search = req.body
     // console.log(search)
