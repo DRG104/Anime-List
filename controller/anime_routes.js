@@ -17,7 +17,7 @@ router.post('/show', (req, res) => {
     .then(anime => {
         res.render('anime/show', {anime})
         // JSON response is in an array
-        console.log(anime.data[1])
+        // console.log(anime.data[1])
     })
     .catch(err => {
         res.json(err)
@@ -32,13 +32,21 @@ router.post('/show', (req, res) => {
 // .then(res => res.text())
 // .then(text => console.log(text))
 
-
-
-
 router.get('/', (req, res) => {
-    // const search = req.body
-    // console.log(search)
-    res.render('anime/index')
+    const api = `https://api.jikan.moe/v4/top/anime/`
+    fetch(api)
+    .then (res => res.json())
+    .then(anime => {
+        res.render('anime/index', {anime})
+        console.log(anime)
+    })
 })
+
+
+// router.get('/', (req, res) => {
+//     // const search = req.body
+//     // console.log(search)
+//     res.render('anime/index')
+// })
 
 module.exports = router
