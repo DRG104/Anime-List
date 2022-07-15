@@ -13,37 +13,49 @@ const router = express.Router()
 ////////////////////////////////////////////
 // Importing models
 ////////////////////////////////////////////
-const List = require('../models/list')
+// const List = require('../models/list')
+// const Anime = require('../models/anime')
 
 
 
 ////////////////////////////////////////////
 // Routes
 ////////////////////////////////////////////
-router.post('/:animeId', (req, res) => {
-    // check mongo shell or db.collections to find animeId or userId
-    const animeId = req.params.animeId
-    req.body.author = req.session.userId
+// router.post('/:animeId', (req, res) => {
+//     // check mongo shell or db.collections to find animeId or userId
+//     const animeId = req.params.animeId
+//     req.body.author = req.session.userId
 
     
-})
+// })
 
 
 router.post('/show', (req, res) => {
     const search = req.body.anime
     const api = `https://api.jikan.moe/v4/anime?q=${search}&sfw`
     fetch(api)
-    .then(res => res.json())
-    .then(anime => {
-        res.render('anime/show', {anime})
-        // JSON response is in an array
-        // console.log(anime.data[1])
-    })
-    .catch(err => {
-        res.json(err)
-    })
+        .then(res => res.json())
+        .then(anime => {
+            // JSON response is in an array
+            // console.log(anime.data[1])
+            res.render('anime/show', {anime})
+        })
+        .catch(err => {
+            res.json(err)
+        })
 })
 
+// show should show only one item
+// index should show all the items
+
+// on show page for single anime > need form INPUT with value of: {{anime.data.mal_id}}
+
+// need basic info to display the show in model (anime.js)
+// mal_id is KEY
+// save mal_id into DB
+// model: title, mal_id, image
+
+// https://api.jikan.moe/v4/anime/{id}/full
 
 // anime by popularity 
 // https://api.jikan.moe/v4/top/anime/
@@ -57,8 +69,8 @@ router.get('/', (req, res) => {
     fetch(api)
     .then (res => res.json())
     .then(anime => {
+        // console.log(anime)
         res.render('anime/index', {anime})
-        console.log(anime)
     })
 })
 
