@@ -7,6 +7,7 @@ const { Schema, model } = mongoose
 const listSchema = new Schema({
     name: String,
     description: String,
+    tags: [String],
     owner: {
         // ObjectId = unique number when something is aded to database
         // a single User's ._id field

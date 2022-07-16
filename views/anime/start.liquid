@@ -24,7 +24,9 @@
             <h3>Mal ID is: 1 {{anime.data[index].mal_id}}</h3>
             <!-- <h3>Info is:{{data.data[0].images.jpg.image_url}}</h3> -->
             <h3>Anime Title is:{{anime.data[index].title}}</h3>
-            <img src="{{anime.data[index].images.jpg.image_url}}">
+            <a href="/anime/{{anime.data[index].mal_id}}">
+                <img src="{{anime.data[index].images.jpg.image_url}}">
+            </a>
         </div>
     {% endfor %}
 

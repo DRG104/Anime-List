@@ -29,7 +29,12 @@ const Anime = require('../models/anime')
     
 // })
 
+// GET route to make a USER LIST
+router.get('/list/new', (req, res) => {
+    res.render('anime/newList')
+})
 
+// POST - Takes the User's query and finds anime using the API
 router.post('/search', (req, res) => {
     const search = req.body.anime
     const api = `https://api.jikan.moe/v4/anime?q=${search}&sfw`
@@ -52,14 +57,14 @@ router.post('/search', (req, res) => {
 // added to list --> go to user list --> can add/remove items --> GOOD!!
 
 
-// show should show only one item
-// displays a single anime from SEARCH
+// show should show only one item *DONE
+// displays a single anime from SEARCH *DONE
 
 // search --> show
 
-// index should show all the items
-// instead of index --> changed to SEARCH
-// displays ALL anime from a query
+// index should show all the items (in this case we'll show all the lists)
+// instead of index --> changed to SEARCH *DONE
+// displays ALL anime from a query *DONE
 
 // HOW TO SAVE MAL ID!!!!!
 // on show page for single anime > need form INPUT with value of: {{anime.data.mal_id}}
@@ -130,6 +135,7 @@ router.get('/mine', (req, res) => {
 
 // GET - SHOW a single anime page from search
 router.get('/:id', (req, res) => {
+    // search page uses mal_id as the id which is passed to animeId
     const animeId = req.params.id
     const api = `https://api.jikan.moe/v4/anime/${animeId}/full`
 

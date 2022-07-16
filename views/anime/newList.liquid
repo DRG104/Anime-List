@@ -1,0 +1,40 @@
+{% layout 'layout.liquid' %}
+
+
+{% block content %}
+
+<div class="container-md">
+    <form action="/list" method="POST">
+        <fieldset>
+            <legend>Create a New List to Sort Your Anime!</legend>
+            <label class="form-label">Name:</label>
+            <input 
+                class="form-control" 
+                type="text" 
+                name="name" 
+                placeholder="enter name"
+            >
+            <label class="form-label">Description:</label>
+            <input 
+                class="form-control" 
+                type="text" 
+                name="descripton" 
+                placeholder="enter description"
+            >
+            <label class="form-label">Tags:</label>
+            <input 
+                class="form-control" 
+                type="text" 
+                name="tags" 
+                placeholder="add tags"
+            >
+        </fieldset>
+        <input 
+        type="submit" 
+        value="Create New Fruit" 
+        class="btn btn-success"
+        >
+    </form>
+</div>
+
+{% endblock %}
