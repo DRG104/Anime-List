@@ -13,8 +13,8 @@ const router = express.Router()
 ////////////////////////////////////////////
 // Importing models
 ////////////////////////////////////////////
-// const List = require('../models/list')
-// const Anime = require('../models/anime')
+const List = require('../models/list')
+const Anime = require('../models/anime')
 
 
 
@@ -88,12 +88,12 @@ router.post('/search', (req, res) => {
 // when user signs in, it should default to their list page, not popular anime
 router.get('/', (req, res) => {
     const api = `https://api.jikan.moe/v4/top/anime/`
-    fetch(api)
-    .then (res => res.json())
-    .then(anime => {
-        // console.log(anime)
-        res.render('anime/start', {anime})
-    })
+        fetch(api)
+        .then (res => res.json())
+        .then(anime => {
+            // console.log(anime)
+            res.render('anime/start', {anime})
+        })
 })
 
 // after logging in, goes here
@@ -114,12 +114,12 @@ router.get('/start', (req, res) => {
 
 router.get('/mine', (req, res) => {
     listIndexes.find({ owner: req.session.userId })
-    .then(anime => {
-        res.render('anime/index', {anime})
-    })
-    .catch(err => {
-        res.json(err)
-    })
+        .then(anime => {
+            res.render('anime/index', {anime})
+        })
+        .catch(err => {
+            res.json(err)
+        })
 })
 
 // router.get('/', (req, res) => {
@@ -127,5 +127,22 @@ router.get('/mine', (req, res) => {
 //     // console.log(search)
 //     res.render('anime/index')
 // })
+
+// GET - SHOW a single anime page from search
+router.get('/:id', (req, res) => {
+    const animeId = req.params.id
+    const api = `https://api.jikan.moe/v4/anime/${animeId}/full`
+
+    fetch(api)
+        .then(res => res.json())
+        .then(anime => {
+            // JSON response is in an array
+            console.log(anime.data)
+            res.render('anime/show', {anime})
+        })
+        .catch(err => {
+            res.json(err)
+        })
+})
 
 module.exports = router
