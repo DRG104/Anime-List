@@ -30,7 +30,7 @@ const router = express.Router()
 // })
 
 
-router.post('/show', (req, res) => {
+router.post('/search', (req, res) => {
     const search = req.body.anime
     const api = `https://api.jikan.moe/v4/anime?q=${search}&sfw`
     fetch(api)
@@ -38,16 +38,30 @@ router.post('/show', (req, res) => {
         .then(anime => {
             // JSON response is in an array
             // console.log(anime.data[1])
-            res.render('anime/show', {anime})
+            res.render('anime/search', {anime})
         })
         .catch(err => {
             res.json(err)
         })
 })
 
-// show should show only one item
-// index should show all the items
+////////////////////////////////////////////
+// start --> search --> show --> add to list --> from list using mal_id :> reference Jikan API for more info!!
 
+// list
+// added to list --> go to user list --> can add/remove items --> GOOD!!
+
+
+// show should show only one item
+// displays a single anime from SEARCH
+
+// search --> show
+
+// index should show all the items
+// instead of index --> changed to SEARCH
+// displays ALL anime from a query
+
+// HOW TO SAVE MAL ID!!!!!
 // on show page for single anime > need form INPUT with value of: {{anime.data.mal_id}}
 
 // need basic info to display the show in model (anime.js)
@@ -55,24 +69,47 @@ router.post('/show', (req, res) => {
 // save mal_id into DB
 // model: title, mal_id, image
 
+////////////////////////////////////////////
+// anime by ID - we save mal_id and search the API using THIS
 // https://api.jikan.moe/v4/anime/{id}/full
 
 // anime by popularity 
 // https://api.jikan.moe/v4/top/anime/
 
 // fetch(`https://api.jikan.moe/v4/anime?q=&sfw`)
-// .then(res => res.text())
+// .then(res => res.json())
 // .then(text => console.log(text))
 
+
+// todo: add a show route to display a single anime from the search
+// add a show route to display user's list(s)
+
+// START PAGE - Might change popular anime into just display user's list by default?
+// when user signs in, it should default to their list page, not popular anime
 router.get('/', (req, res) => {
     const api = `https://api.jikan.moe/v4/top/anime/`
     fetch(api)
     .then (res => res.json())
     .then(anime => {
         // console.log(anime)
-        res.render('anime/index', {anime})
+        res.render('anime/start', {anime})
     })
 })
+
+// after logging in, goes here
+router.get('/start', (req, res) => {
+    // const api = `https://api.jikan.moe/v4/top/anime/`
+    // fetch(api)
+    // .then (res => res.json())
+    // .then(anime => {
+        // console.log(anime)
+        res.render('anime/list')
+    // })
+    // .catch(err => {
+    //     res.json(err)
+    // })
+})
+
 
 
 router.get('/mine', (req, res) => {
