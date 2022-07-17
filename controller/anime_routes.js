@@ -42,23 +42,38 @@ router.post('/list', (req, res) => {
         .then(list => {
             console.log(list)
             // problem here, keeps redirecting to show.liquid
-            res.redirect('/')
+            res.redirect('/anime/list')
         })
         .catch(err => {
             res.json(err)
         })
 })
 
+// req.params.id
+
 // GET - List index **work on this now
 router.get('/list', (req, res) => {
     List.find({})
+    // do Anime.find({})
         .then(list => {
+            console.log(list, "this is a list list")
+            // can pass {list, anime}
             res.render('anime/index', {list})
         })
         .catch(err => {
             res.json(err)
         })
 })
+
+
+// new create page where you can pick a list and add anime
+
+
+// done in liquid, 
+// do a for loop at index, with ul - li, within {}
+// index page - specifically access list
+// item in list - item will be index
+// might return empty in each card
 
 // POST - Takes the User's query and finds anime using the API
 router.post('/search', (req, res) => {
@@ -74,6 +89,11 @@ router.post('/search', (req, res) => {
         .catch(err => {
             res.json(err)
         })
+})
+
+// POST - Takes anime from show page and saves to User's LIST
+router.post('/list', (req, res) => {
+    // lost
 })
 
 ////////////////////////////////////////////
@@ -166,10 +186,17 @@ router.get('/:id', (req, res) => {
     const animeId = req.params.id
     const api = `https://api.jikan.moe/v4/anime/${animeId}/full`
 
+    // Anime.insertOne(anime) IMPORTANT
+
     fetch(api)
         .then(res => res.json())
+        // add anime to collection from here
+        // db.animes
         .then(anime => {
             // JSON response is in an array
+            // db.animes.insertOne(anime)
+
+            // if doesn't work, might need to declare a const variable
             console.log(anime.data)
             res.render('anime/show', {anime})
         })
