@@ -34,12 +34,14 @@ router.get('/list/new', (req, res) => {
     res.render('anime/newList')
 })
 
-// POST - let's create the list **work on this now
-router.post('/anime/list', (req, res) => {
+// POST - let's CREATE the list **work on this now
+router.post('/list', (req, res) => {
+    console.log(req.body, "we make the body")
+    req.body.owner = req.session.userId
     List.create(req.body)
         .then(list => {
             console.log(list)
-            res.redirect('/anime/list')
+            res.render('anime/list', {list})
         })
         .catch(err => {
             res.json(err)
@@ -130,7 +132,7 @@ router.get('/start', (req, res) => {
 
 
 router.get('/mine', (req, res) => {
-    listIndexes.find({ owner: req.session.userId })
+    List.find({ owner: req.session.userId })
         .then(anime => {
             res.render('anime/index', {anime})
         })

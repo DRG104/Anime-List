@@ -1,9 +1,16 @@
 {% layout 'layout.liquid' %}
 
 {% block content %}
- 
-
-this should contain all of user's lists
+    <!-- want to hide this if no list available -->
+    <div>
+        <h1>List Name: {{list.name}}</h1>
+        <h2>Description: {{list.description}}</h2>
+        <h3>Tags: {{list.tags}}</h3>
+    </div>
+    
+    <div>
+        please add anime to me here
+    </div>
     
 
 {% endblock %}
