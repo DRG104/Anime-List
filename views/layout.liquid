@@ -24,6 +24,22 @@
                 <a href="/anime/list/new" class="nav-link text-light">New List</a>
                 <a href="/anime/mine" class="nav-link text-light">My List</a>
             </div>
+            <div class="container">
+                <form action="/anime/search" method="POST">
+                    <fieldset class="start">
+                        <legend style="color: white">Search Anime</legend>
+                        <label style="color: white">Anime</label>
+                        <input 
+                            type="text" 
+                            name="anime"
+                        >
+                        <input 
+                        type="submit" 
+                        value="Search" 
+                        >
+                    </fieldset>
+                </form>
+            </div>
         </div>
     </nav>
     <main class="container-md">

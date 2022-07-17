@@ -8,9 +8,16 @@
         <h3>Tags: {{list.tags}}</h3>
     </div>
     
-    <div>
-        please add anime to me here
-    </div>
+    {% for index in (0..24) %}
+        <div class="card" style="width: 18rem">
+            <h3>Mal ID is: 1 {{anime.data[index].mal_id}}</h3>
+            <!-- <h3>Info is:{{data.data[0].images.jpg.image_url}}</h3> -->
+            <h3>Anime Title is:{{anime.data[index].title}}</h3>
+            <a href="/anime/{{anime.data[index].mal_id}}">
+                <img src="{{anime.data[index].images.jpg.image_url}}">
+            </a>
+        </div>
+    {% endfor %}
     
 
 {% endblock %}

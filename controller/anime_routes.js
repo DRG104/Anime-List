@@ -29,20 +29,20 @@ const Anime = require('../models/anime')
     
 // })
 
-// GET route to show new user list form
+// GET route to display User's new list form
 router.get('/list/new', (req, res) => {
     res.render('anime/newList')
 })
 
 // POST - let's CREATE the list **work on this now
-router.post('/list', (req, res) => {
+router.post('/mine', (req, res) => {
     console.log(req.body, "we make the body")
     req.body.owner = req.session.userId
     List.create(req.body)
-        .then(list => {
-            console.log(list)
-            // problem here, keeps redirecting to show.liquid
-            res.redirect('/anime/list')
+        .then(lists => {
+            console.log(lists)
+            // problem here, keeps redirecting to show.liquid * fixed use ('/anime/list')
+            res.redirect('/anime/mine')
         })
         .catch(err => {
             res.json(err)
@@ -51,12 +51,12 @@ router.post('/list', (req, res) => {
 
 // req.params.id
 
-// GET - List index **work on this now
-router.get('/list', (req, res) => {
+// GET - List index - shows all of User's lists **work on this now
+router.get('/mine', (req, res) => {
     List.find({})
     // do Anime.find({})
         .then(list => {
-            console.log(list, "this is a list list")
+            console.log(list[1], "this is a list list")
             // can pass {list, anime}
             res.render('anime/index', {list})
         })
@@ -154,7 +154,7 @@ router.get('/start', (req, res) => {
     // .then (res => res.json())
     // .then(anime => {
         // console.log(anime)
-        res.render('anime/list')
+        res.render('anime/search')
     // })
     // .catch(err => {
     //     res.json(err)
@@ -163,16 +163,16 @@ router.get('/start', (req, res) => {
 
 
 
-router.get('/mine', (req, res) => {
-    List.find({ owner: req.session.userId })
-        .then(anime => {
-            console.log(anime, "this is mylist")
-            res.render('anime/index', {anime})
-        })
-        .catch(err => {
-            res.json(err)
-        })
-})
+// router.get('/mine', (req, res) => {
+//     List.find({ owner: req.session.userId })
+//         .then(anime => {
+//             console.log(anime, "this is mylist")
+//             res.render('anime/index', {anime})
+//         })
+//         .catch(err => {
+//             res.json(err)
+//         })
+// })
 
 // router.get('/', (req, res) => {
 //     // const search = req.body

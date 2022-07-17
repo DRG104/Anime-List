@@ -5,4 +5,13 @@
 
 index (this) should hold all of your lists
 
+{% for index in (0..50) %}
+    <div class="card" style="width: 30rem">
+        <h3>List name: {{list[index].name}}</h3>
+        <h3>List Description:{{list[index].description}}</h3>
+        <h3>List of tags {{list[index].tags}}</h3>
+    </div>
+{% endfor %}
+
+
 {% endblock %}
