@@ -29,9 +29,21 @@ const Anime = require('../models/anime')
     
 // })
 
-// GET route to make a USER LIST
+// GET route to show new user list form
 router.get('/list/new', (req, res) => {
     res.render('anime/newList')
+})
+
+// POST - let's create the list **work on this now
+router.post('/anime/list', (req, res) => {
+    List.create(req.body)
+        .then(list => {
+            console.log(list)
+            res.redirect('/anime/list')
+        })
+        .catch(err => {
+            res.json(err)
+        })
 })
 
 // POST - Takes the User's query and finds anime using the API
