@@ -41,7 +41,19 @@ router.post('/list', (req, res) => {
     List.create(req.body)
         .then(list => {
             console.log(list)
-            res.render('anime/list', {list})
+            // problem here, keeps redirecting to show.liquid
+            res.redirect('/')
+        })
+        .catch(err => {
+            res.json(err)
+        })
+})
+
+// GET - List index **work on this now
+router.get('/list', (req, res) => {
+    List.find({})
+        .then(list => {
+            res.render('anime/index', {list})
         })
         .catch(err => {
             res.json(err)
@@ -134,6 +146,7 @@ router.get('/start', (req, res) => {
 router.get('/mine', (req, res) => {
     List.find({ owner: req.session.userId })
         .then(anime => {
+            console.log(anime, "this is mylist")
             res.render('anime/index', {anime})
         })
         .catch(err => {
