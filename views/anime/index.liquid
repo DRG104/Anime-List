@@ -1,9 +1,9 @@
 {% layout 'layout.liquid' %}
 
+<!-- this holds a list of user's lists -->
 
 {% block content %}
 
-index (this) should hold all of your lists
 {% for list in lists %}
     <div class="card" style="width: 30rem">
         <h3>List name: {{list.name}}</h3>

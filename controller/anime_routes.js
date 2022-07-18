@@ -2,7 +2,6 @@
 // Import dependencies
 /////////////////////////////////
 const express = require('express')
-const { listIndexes } = require('../models/user')
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args))
 
 ////////////////////////////////////////////
@@ -82,8 +81,6 @@ router.post('/list/mine', (req, res) => {
         })
 })
 
-// req.params.id
-
 // GET - List index - shows all of User's lists **DONE
 router.get('/list/mine', (req, res) => {
     List.find({ owner: req.session.userId })
@@ -139,9 +136,9 @@ router.post('/search', (req, res) => {
 // show should show only one item *DONE
 // displays a single anime from SEARCH *DONE
 
-// search --> show
+// search --> show *DONE
 
-// index should show all the items (in this case we'll show all the lists)
+// index should show all the items (in this case we'll show all the lists) *DONE
 // instead of index --> changed to SEARCH *DONE
 // displays ALL anime from a query *DONE
 
@@ -187,7 +184,7 @@ router.get('/start', (req, res) => {
     // .then (res => res.json())
     // .then(anime => {
         // console.log(anime)
-        res.render('anime/search')
+        res.render('anime/index')
     // })
     // .catch(err => {
     //     res.json(err)

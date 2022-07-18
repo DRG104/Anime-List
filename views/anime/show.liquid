@@ -1,9 +1,9 @@
 {% layout 'layout.liquid' %}
 
+<!-- shows a single anime from search -->
+
 {% block content %}
  
-
-this should show a single anime from search
     
 <!-- the rems lol -->
 <div class="card" style="width: 100rem">
@@ -12,7 +12,10 @@ this should show a single anime from search
     <h3>Anime Title is:{{anime.data.title}}</h3>
     <h3>{{anime.data.synopsis}}</h3>
     <img src="{{anime.data.images.jpg.image_url}}">
-    <button><input type="Title" value="Add {{anime.data.mal_id}}" class="btn btn-success"></button>
+    
+    <form action="/anime/list/mine/{{list._id}}?_method=PUT" method="POST">
+        <button><input type="Title" value="Add {{anime.data.mal_id}}" class="btn btn-success"></button>
+    </form>
 </div>
 
 
