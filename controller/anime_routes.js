@@ -35,14 +35,14 @@ router.get('/list/new', (req, res) => {
 })
 
 // POST - let's CREATE the list **work on this now
-router.post('/mine', (req, res) => {
+router.post('/list/mine', (req, res) => {
     console.log(req.body, "we make the body")
     req.body.owner = req.session.userId
     List.create(req.body)
         .then(lists => {
             console.log(lists)
             // problem here, keeps redirecting to show.liquid * fixed use ('/anime/list')
-            res.redirect('/anime/mine')
+            res.redirect('/anime/list/mine')
         })
         .catch(err => {
             res.json(err)
@@ -52,13 +52,13 @@ router.post('/mine', (req, res) => {
 // req.params.id
 
 // GET - List index - shows all of User's lists **work on this now
-router.get('/mine', (req, res) => {
-    List.find({})
+router.get('/list/mine', (req, res) => {
+    List.find({ owner: req.session.userId })
     // do Anime.find({})
-        .then(list => {
-            console.log(list[1], "this is a list list")
+        .then(lists => {
+            console.log(lists, "this is a list list")
             // can pass {list, anime}
-            res.render('anime/index', {list})
+            res.render('anime/index', { lists })
         })
         .catch(err => {
             res.json(err)
@@ -92,9 +92,9 @@ router.post('/search', (req, res) => {
 })
 
 // POST - Takes anime from show page and saves to User's LIST
-router.post('/list', (req, res) => {
-    // lost
-})
+// router.post('/list', (req, res) => {
+//     // lost
+// })
 
 ////////////////////////////////////////////
 // start --> search --> show --> add to list --> from list using mal_id :> reference Jikan API for more info!!
