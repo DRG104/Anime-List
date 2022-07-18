@@ -28,72 +28,72 @@ const Anime = require('../models/anime')
     
 // })
 
-// DELETE - Create a button to delete a user's list **Done
-router.delete('/list/mine/:id', (req, res) => {
-    const listId = req.params.id
-    List.findByIdAndRemove(listId)
-        .then(list => {
-            res.redirect('/anime/list/mine')
-        })
-})
+// // DELETE - Create a button to delete a user's list **Done
+// router.delete('/list/mine/:id', (req, res) => {
+//     const listId = req.params.id
+//     List.findByIdAndRemove(listId)
+//         .then(list => {
+//             res.redirect('/anime/list/mine')
+//         })
+// })
 
-// GET route - display a user's list edit form **Done
-router.get('/list/mine/:id/edit', (req, res) => {
-    const listId = req.params.id
-    List.findById(listId)
-        .then(list => {
-            res.render('anime/listEdit', {list})
-        })
-        .catch(err => {
-            res.json(err)
-        })
-})
+// // GET route - display a user's list edit form **Done
+// router.get('/list/mine/:id/edit', (req, res) => {
+//     const listId = req.params.id
+//     List.findById(listId)
+//         .then(list => {
+//             res.render('anime/listEdit', {list})
+//         })
+//         .catch(err => {
+//             res.json(err)
+//         })
+// })
 
-// PUT - Update a user's list **Done
-router.put('/list/mine/:id', (req, res) => {
-    const listId = req.params.id
-    List.findByIdAndUpdate(listId, req.body, { new: true })
-        .then(list => {
-            res.redirect('/anime/list/mine')
-        })
-        .catch(err => {
-            res.json(err)
-        })
-})
+// // PUT - Update a user's list **Done
+// router.put('/list/mine/:id', (req, res) => {
+//     const listId = req.params.id
+//     List.findByIdAndUpdate(listId, req.body, { new: true })
+//         .then(list => {
+//             res.redirect('/anime/list/mine')
+//         })
+//         .catch(err => {
+//             res.json(err)
+//         })
+// })
 
-// GET route to display User's new list form **DONE
-router.get('/list/new', (req, res) => {
-    res.render('anime/newList')
-})
+// // GET route to display User's new list form **DONE
+// router.get('/list/new', (req, res) => {
+//     res.render('anime/newList')
+// })
 
-// POST - let's CREATE the list **DONE
-router.post('/list/mine', (req, res) => {
-    console.log(req.body, "we make the body")
-    req.body.owner = req.session.userId
-    List.create(req.body)
-        .then(lists => {
-            console.log(lists)
-            // problem here, keeps redirecting to show.liquid * fixed use ('/anime/list')
-            res.redirect('/anime/list/mine')
-        })
-        .catch(err => {
-            res.json(err)
-        })
-})
+// // POST - let's CREATE the list **DONE
+// router.post('/list/mine', (req, res) => {
+//     console.log(req.body, "we make the body")
+//     req.body.owner = req.session.userId
+//     List.create(req.body)
+//         .then(lists => {
+//             console.log(lists)
+//             // problem here, keeps redirecting to show.liquid * fixed use ('/anime/list')
+//             res.redirect('/anime/list/mine')
+//         })
+//         .catch(err => {
+//             res.json(err)
+//         })
+// })
 
-// GET - List index - shows all of User's lists **DONE
-router.get('/list/mine', (req, res) => {
-    List.find({ owner: req.session.userId })
-    // do Anime.find({})
-        .then(lists => {
-            console.log(lists, "this is a list list")
-            // can pass {list, anime}
-            res.render('anime/index', { lists })
-        })
-        .catch(err => {
-            res.json(err)
-        })
-})
+// // GET - List index - shows all of User's lists **DONE
+// router.get('/list/mine', (req, res) => {
+//     List.find({ owner: req.session.userId })
+//     // do Anime.find({})
+//         .then(lists => {
+//             console.log(lists, "this is a list list")
+//             // can pass {list, anime}
+//             res.render('anime/index', { lists })
+//         })
+//         .catch(err => {
+//             res.json(err)
+//         })
+// })
 
 
 // new create page where you can pick a list and add anime
@@ -107,6 +107,7 @@ router.get('/list/mine', (req, res) => {
 
 // POST - Takes the User's query and finds anime using the API **Done
 router.post('/search', (req, res) => {
+    const userInfo = req.session.username
     const searchQuery = req.body.anime
     const api = `https://api.jikan.moe/v4/anime?q=${searchQuery}&sfw`
     fetch(api)
@@ -114,7 +115,7 @@ router.post('/search', (req, res) => {
         .then(anime => {
             // JSON response is in an array
             // console.log(anime.data, "HELP")
-            res.render('anime/search', {anime})
+            res.render('anime/search', {anime, userInfo})
         })
         .catch(err => {
             res.json(err)
@@ -168,29 +169,15 @@ router.post('/search', (req, res) => {
 // START PAGE - Might change popular anime into just display user's list by default?
 // when user signs in, it should default to their list page, not popular anime
 router.get('/', (req, res) => {
+    const userInfo = req.session.username
     const api = `https://api.jikan.moe/v4/top/anime/`
         fetch(api)
         .then (res => res.json())
         .then(anime => {
             // console.log(anime)
-            res.render('anime/start', {anime})
+            res.render('anime/start', {anime, userInfo})
         })
 })
-
-// after logging in, goes here
-router.get('/start', (req, res) => {
-    // const api = `https://api.jikan.moe/v4/top/anime/`
-    // fetch(api)
-    // .then (res => res.json())
-    // .then(anime => {
-        // console.log(anime)
-        res.render('anime/index')
-    // })
-    // .catch(err => {
-    //     res.json(err)
-    // })
-})
-
 
 
 // router.get('/mine', (req, res) => {
@@ -210,10 +197,13 @@ router.get('/start', (req, res) => {
 //     res.render('anime/index')
 // })
 
+router.post('/')
+
 // GET - SHOW a single anime page from search
 router.get('/:id', (req, res) => {
     // search page uses mal_id as the id which is passed to animeId
     const animeId = req.params.id
+    const userInfo = req.session.username
     const api = `https://api.jikan.moe/v4/anime/${animeId}/full`
 
     // Anime.insertOne(anime) IMPORTANT
@@ -228,7 +218,7 @@ router.get('/:id', (req, res) => {
 
             // if doesn't work, might need to declare a const variable
             console.log(anime.data)
-            res.render('anime/show', {anime})
+            res.render('anime/show', {anime, userInfo})
         })
         .catch(err => {
             res.json(err)

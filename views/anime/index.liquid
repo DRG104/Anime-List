@@ -1,22 +1,25 @@
 {% layout 'layout.liquid' %}
 
-<!-- this holds a list of user's lists -->
+<!-- this holds user's anime in a list -->
 
 {% block content %}
-
-{% for list in lists %}
-    <div class="card" style="width: 30rem">
-        <h3>List name: {{list.name}}</h3>
-        <h3>List Description:{{list.description}}</h3>
-        <h3>List of tags {{list.tags}}</h3>
-    </div>
+    <!-- want to hide this if no list available -->
     <div>
-        <a href="/anime/list/mine/{{list._id}}" class="btn btn-primary">Edit</a>
-        <form action="/anime/list/mine/{{list._id}}?_method=DELETE" method="POST">
-            <input type="submit" value="Delete" class="btn btn-danger">
-        </form>
+        <h1>List Name: {{list.name}}</h1>
+        <h2>Description: {{list.description}}</h2>
+        <h3>Tags: {{list.tags}}</h3>
     </div>
-{% endfor %}
-
+    
+    {% for animeEntry in anime.data %}
+        <div class="card" style="width: 18rem">
+            <h3>Mal ID is: 1 {{animeEntry.mal_id}}</h3>
+            <!-- <h3>Info is:{{data.data[0].images.jpg.image_url}}</h3> -->
+            <h3>Anime Title is:{{animeEntry.title}}</h3>
+            <a href="/anime/{{animeEntry.mal_id}}">
+                <img src="{{animeEntry.images.jpg.image_url}}">
+            </a>
+        </div>
+    {% endfor %}
+    
 
 {% endblock %}

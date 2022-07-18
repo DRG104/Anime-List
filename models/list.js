@@ -1,6 +1,7 @@
 // using an already connected mongoose, not a fresh one from node_modules
 const mongoose = require('./connection')
 const commentSchema = require('./comment')
+const animeSchema = require('./anime')
 
 const { Schema, model } = mongoose
 
@@ -18,8 +19,9 @@ const listSchema = new Schema({
     },
     // says a fruit can have many comments.
     // comments are a sub doc of Fruit
+    anime: [animeSchema],
     comments: [commentSchema]
-    }, 
+    },
     {
     timestamps: true
     }

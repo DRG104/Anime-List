@@ -13,7 +13,7 @@
     <h3>{{anime.data.synopsis}}</h3>
     <img src="{{anime.data.images.jpg.image_url}}">
     
-    <form action="/anime/list/mine/{{list._id}}?_method=PUT" method="POST">
+    <form action="/list/mine/{{list._id}}?_method=PUT" method="POST">
         <button><input type="Title" value="Add {{anime.data.mal_id}}" class="btn btn-success"></button>
     </form>
 </div>

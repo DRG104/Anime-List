@@ -29,6 +29,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const animeRoutes = require('./controller/anime_routes')
 const userRoutes = require('./controller/user_routes')
+const listRoutes = require('./controller/list_routes')
 
 // here's the middle ware that sets up our sessions
 app.use(
@@ -49,6 +50,7 @@ app.use(
 // first parameter is a string where routes are going, second is the name of the variable
 app.use('/anime', animeRoutes)
 app.use('/users', userRoutes)
+app.use('/list', listRoutes)
 
 
 // localhost:3000/

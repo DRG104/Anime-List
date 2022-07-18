@@ -30,4 +30,4 @@ const animeSchema = new Schema({
 // model('singular noun Capitalized', schema)
 const Anime = model('Anime', animeSchema)
 
-module.exports = Anime
+module.exports = animeSchema

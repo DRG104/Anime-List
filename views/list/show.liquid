@@ -2,14 +2,9 @@
 
 <!-- this holds user's anime in a list -->
 
+
 {% block content %}
-    <!-- want to hide this if no list available -->
-    <div>
-        <h1>List Name: {{list.name}}</h1>
-        <h2>Description: {{list.description}}</h2>
-        <h3>Tags: {{list.tags}}</h3>
-    </div>
-    
+    Anime GOES HERE
     {% for animeEntry in anime.data %}
         <div class="card" style="width: 18rem">
             <h3>Mal ID is: 1 {{animeEntry.mal_id}}</h3>
