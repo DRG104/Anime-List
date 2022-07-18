@@ -28,73 +28,6 @@ const Anime = require('../models/anime')
     
 // })
 
-// // DELETE - Create a button to delete a user's list **Done
-// router.delete('/list/mine/:id', (req, res) => {
-//     const listId = req.params.id
-//     List.findByIdAndRemove(listId)
-//         .then(list => {
-//             res.redirect('/anime/list/mine')
-//         })
-// })
-
-// // GET route - display a user's list edit form **Done
-// router.get('/list/mine/:id/edit', (req, res) => {
-//     const listId = req.params.id
-//     List.findById(listId)
-//         .then(list => {
-//             res.render('anime/listEdit', {list})
-//         })
-//         .catch(err => {
-//             res.json(err)
-//         })
-// })
-
-// // PUT - Update a user's list **Done
-// router.put('/list/mine/:id', (req, res) => {
-//     const listId = req.params.id
-//     List.findByIdAndUpdate(listId, req.body, { new: true })
-//         .then(list => {
-//             res.redirect('/anime/list/mine')
-//         })
-//         .catch(err => {
-//             res.json(err)
-//         })
-// })
-
-// // GET route to display User's new list form **DONE
-// router.get('/list/new', (req, res) => {
-//     res.render('anime/newList')
-// })
-
-// // POST - let's CREATE the list **DONE
-// router.post('/list/mine', (req, res) => {
-//     console.log(req.body, "we make the body")
-//     req.body.owner = req.session.userId
-//     List.create(req.body)
-//         .then(lists => {
-//             console.log(lists)
-//             // problem here, keeps redirecting to show.liquid * fixed use ('/anime/list')
-//             res.redirect('/anime/list/mine')
-//         })
-//         .catch(err => {
-//             res.json(err)
-//         })
-// })
-
-// // GET - List index - shows all of User's lists **DONE
-// router.get('/list/mine', (req, res) => {
-//     List.find({ owner: req.session.userId })
-//     // do Anime.find({})
-//         .then(lists => {
-//             console.log(lists, "this is a list list")
-//             // can pass {list, anime}
-//             res.render('anime/index', { lists })
-//         })
-//         .catch(err => {
-//             res.json(err)
-//         })
-// })
-
 
 // new create page where you can pick a list and add anime
 
@@ -178,24 +111,6 @@ router.get('/', (req, res) => {
             res.render('anime/start', {anime, userInfo})
         })
 })
-
-
-// router.get('/mine', (req, res) => {
-//     List.find({ owner: req.session.userId })
-//         .then(anime => {
-//             console.log(anime, "this is mylist")
-//             res.render('anime/index', {anime})
-//         })
-//         .catch(err => {
-//             res.json(err)
-//         })
-// })
-
-// router.get('/', (req, res) => {
-//     // const search = req.body
-//     // console.log(search)
-//     res.render('anime/index')
-// })
 
 router.post('/')
 
