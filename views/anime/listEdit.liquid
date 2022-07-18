@@ -1,0 +1,40 @@
+{% layout 'layout.liquid' %}
+
+
+{% block content %}
+
+<div class="container-md">
+    <form action="/anime/mine" method="POST">
+        <fieldset>
+            <legend>Edit your list</legend>
+            <label class="form-label">Name:</label>
+            <input 
+                class="form-control" 
+                type="text" 
+                name="name" 
+                placeholder="enter name"
+            >
+            <label class="form-label">Description:</label>
+            <input 
+                class="form-control" 
+                type="text" 
+                name="description" 
+                placeholder="enter description"
+            >
+            <label class="form-label">Tags:</label>
+            <input 
+                class="form-control" 
+                type="text" 
+                name="tags" 
+                placeholder="add tags"
+            >
+        </fieldset>
+        <input 
+        type="submit" 
+        value="Create New List" 
+        class="btn btn-success"
+        >
+    </form>
+</div>
+
+{% endblock %}

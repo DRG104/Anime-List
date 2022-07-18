@@ -29,12 +29,34 @@ const Anime = require('../models/anime')
     
 // })
 
-// GET route to display User's new list form
+// DELETE - Create a button to delete a user's list **Work on this
+router.delete('/list/mine/:id', (req, res) => {
+    const listId = req.params.id
+    console.log(listId)
+    List.findByIdAndRemove(listId)
+        .then(list => {
+            res.redirect('/anime/list/mine')
+        })
+})
+
+// GET route - display a user's list edit form **Work on this
+router.get('/list/mine/:id/edit', (req, res) => {
+    const listId = req.params.id
+    List.findById(listId)
+        .then(list => {
+            res.render('anime/listEdit', {list})
+        })
+        .catch(err => {
+            res.json(err)
+        })
+})
+
+// GET route to display User's new list form **DONE
 router.get('/list/new', (req, res) => {
     res.render('anime/newList')
 })
 
-// POST - let's CREATE the list **work on this now
+// POST - let's CREATE the list **DONE
 router.post('/list/mine', (req, res) => {
     console.log(req.body, "we make the body")
     req.body.owner = req.session.userId
@@ -51,7 +73,7 @@ router.post('/list/mine', (req, res) => {
 
 // req.params.id
 
-// GET - List index - shows all of User's lists **work on this now
+// GET - List index - shows all of User's lists **DONE
 router.get('/list/mine', (req, res) => {
     List.find({ owner: req.session.userId })
     // do Anime.find({})

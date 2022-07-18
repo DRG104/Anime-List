@@ -10,6 +10,12 @@ index (this) should hold all of your lists
         <h3>List Description:{{list.description}}</h3>
         <h3>List of tags {{list.tags}}</h3>
     </div>
+    <div>
+        <a href="/list/mine/{{list._id}}/edit" class="btn btn-primary">Edit</a>
+        <form action="/list/mine/{{list._id}}?_method=DELETE" method="POST">
+            <input type="submit" value="Delete" class="btn btn-danger">
+        </form>
+    </div>
 {% endfor %}
 
 
