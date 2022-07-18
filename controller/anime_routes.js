@@ -29,22 +29,33 @@ const Anime = require('../models/anime')
     
 // })
 
-// DELETE - Create a button to delete a user's list **Work on this
+// DELETE - Create a button to delete a user's list **Done
 router.delete('/list/mine/:id', (req, res) => {
     const listId = req.params.id
-    console.log(listId)
     List.findByIdAndRemove(listId)
         .then(list => {
             res.redirect('/anime/list/mine')
         })
 })
 
-// GET route - display a user's list edit form **Work on this
+// GET route - display a user's list edit form **Done
 router.get('/list/mine/:id/edit', (req, res) => {
     const listId = req.params.id
     List.findById(listId)
         .then(list => {
             res.render('anime/listEdit', {list})
+        })
+        .catch(err => {
+            res.json(err)
+        })
+})
+
+// PUT - Update a user's list **Done
+router.put('/list/mine/:id', (req, res) => {
+    const listId = req.params.id
+    List.findByIdAndUpdate(listId, req.body, { new: true })
+        .then(list => {
+            res.redirect('/anime/list/mine')
         })
         .catch(err => {
             res.json(err)
@@ -97,7 +108,7 @@ router.get('/list/mine', (req, res) => {
 // item in list - item will be index
 // might return empty in each card
 
-// POST - Takes the User's query and finds anime using the API
+// POST - Takes the User's query and finds anime using the API **Done
 router.post('/search', (req, res) => {
     const searchQuery = req.body.anime
     const api = `https://api.jikan.moe/v4/anime?q=${searchQuery}&sfw`
@@ -154,8 +165,8 @@ router.post('/search', (req, res) => {
 // .then(text => console.log(text))
 
 
-// todo: add a show route to display a single anime from the search
-// add a show route to display user's list(s)
+// todo: add a show route to display a single anime from the search **Done
+// add a show route to display user's list(s) *Done
 
 // START PAGE - Might change popular anime into just display user's list by default?
 // when user signs in, it should default to their list page, not popular anime

@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="container-md">
-    <form action="/anime/mine" method="POST">
+    <form action="/anime/list/mine/{{list._id}}?_method=PUT" method="POST">
         <fieldset>
             <legend>Edit your list</legend>
             <label class="form-label">Name:</label>
@@ -13,6 +13,7 @@
                 type="text" 
                 name="name" 
                 placeholder="enter name"
+                value="{{list.name}}"
             >
             <label class="form-label">Description:</label>
             <input 
@@ -20,6 +21,7 @@
                 type="text" 
                 name="description" 
                 placeholder="enter description"
+                value="{{list.description}}"
             >
             <label class="form-label">Tags:</label>
             <input 
@@ -27,12 +29,13 @@
                 type="text" 
                 name="tags" 
                 placeholder="add tags"
+                value="{{list.tags}}"
             >
         </fieldset>
         <input 
-        type="submit" 
-        value="Create New List" 
-        class="btn btn-success"
+            type="submit"  
+            value="Edit {{list.name}}" 
+            class="btn btn-success"
         >
     </form>
 </div>
