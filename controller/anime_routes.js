@@ -77,13 +77,13 @@ router.get('/list/mine', (req, res) => {
 
 // POST - Takes the User's query and finds anime using the API
 router.post('/search', (req, res) => {
-    const search = req.body.anime
-    const api = `https://api.jikan.moe/v4/anime?q=${search}&sfw`
+    const searchQuery = req.body.anime
+    const api = `https://api.jikan.moe/v4/anime?q=${searchQuery}&sfw`
     fetch(api)
         .then(res => res.json())
         .then(anime => {
             // JSON response is in an array
-            // console.log(anime.data[1])
+            // console.log(anime.data, "HELP")
             res.render('anime/search', {anime})
         })
         .catch(err => {
