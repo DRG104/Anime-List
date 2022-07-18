@@ -112,7 +112,31 @@ router.get('/', (req, res) => {
         })
 })
 
-router.post('/')
+router.post('/create', (req, res) => {
+    // console.log(req.body)
+    const anime = {
+        mal_id: req.body.mal_id,
+        title:  req.body.title,
+        image:  req.body.image
+    }
+    Anime.create(anime)
+        .then(anime => {
+            List.findById(req.body.list)
+                .then(list => {
+                    list.anime.push(anime._id)
+                    console.log("This is an anime", anime)
+                    console.log("This is a list", list)
+                    list.save()
+                    res.redirect(`/list/mine/${list._id}`)
+                })
+                .catch(err => {
+                    res.json(err)
+                })
+        }) 
+        .catch(err => {
+            res.json(err)
+        })
+}) 
 
 // GET - SHOW a single anime page from search
 router.get('/:id', (req, res) => {
@@ -122,18 +146,22 @@ router.get('/:id', (req, res) => {
     const api = `https://api.jikan.moe/v4/anime/${animeId}/full`
 
     // Anime.insertOne(anime) IMPORTANT
+    List.find({})
+        .then(lists => {
+            fetch(api)
+                .then(res => res.json())
+                
+                .then(anime => {
+                    // JSON response is in an array
+                    // db.animes.insertOne(anime)
 
-    fetch(api)
-        .then(res => res.json())
-        // add anime to collection from here
-        // db.animes
-        .then(anime => {
-            // JSON response is in an array
-            // db.animes.insertOne(anime)
-
-            // if doesn't work, might need to declare a const variable
-            console.log(anime.data)
-            res.render('anime/show', {anime, userInfo})
+                    // if doesn't work, might need to declare a const variable
+                    // console.log(anime.data)
+                    res.render('anime/show', {anime, userInfo, lists})
+                })
+                .catch(err => {
+                    res.json(err)
+                })
         })
         .catch(err => {
             res.json(err)

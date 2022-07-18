@@ -93,14 +93,18 @@ router.get('/mine/:id', (req, res) => {
     const listId = req.params.id
     const userInfo = req.session.username
     List.findById(listId)
+        .populate("anime")
         .then(list => {
             const userId = req.session.userId
             const username = req.session.username
+            console.log("This is the list", list)
             res.render('list/show', { list, userId, username, userInfo})
         })
         .catch(err => {
             res.json(err)
         })
 })
+
+// req.body needed to find anime
 
 module.exports = router

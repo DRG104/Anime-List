@@ -13,7 +13,16 @@
     <h3>{{anime.data.synopsis}}</h3>
     <img src="{{anime.data.images.jpg.image_url}}">
     
-    <form action="/list/mine/{{list._id}}?_method=PUT" method="POST">
+    <form action="/anime/create" method="POST">
+        <input type="text" name="title" value={{anime.data.title}} hidden>
+        <input type="text" name="mal_id" value={{anime.data.mal_id}} hidden>
+        <input type="text" name="image" value={{anime.data.images.jpg.image_url}} hidden>
+        <label>Add to which list?</label>
+            <select name="list">
+                {% for list in lists %}
+                    <option value={{list._id}}>{{list.name}}</option>
+                {% endfor %}
+            </select>
         <button><input type="Title" value="Add {{anime.data.mal_id}}" class="btn btn-success"></button>
     </form>
 </div>

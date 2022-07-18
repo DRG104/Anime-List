@@ -19,7 +19,10 @@ const listSchema = new Schema({
     },
     // says a fruit can have many comments.
     // comments are a sub doc of Fruit
-    anime: [animeSchema],
+    anime: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Anime'
+    }],
     comments: [commentSchema]
     },
     {
