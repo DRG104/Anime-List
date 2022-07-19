@@ -3,30 +3,55 @@
 <!-- user starts on this page after logging in -->
 
 {% block content %}
-<!-- <div class="container">
-    <form action="/anime/search" method="POST">
-        <fieldset class="start">
-            <legend>Search Anime</legend>
-            <label>Anime</label>
-            <input 
-                type="text" 
-                name="anime"
-            >
-            <input 
-            type="submit" 
-            value="Search" 
-            >
-        </fieldset>
-    </form>
-</div> -->
-    <h1>Here are some popular anime!</h1>
-    {% for animeEntry in anime.data %}
-        <div class="card" style="width: 18rem">
-            <h3>{{animeEntry.title}}</h3>
-            <a href="/anime/{{animeEntry.mal_id}}">
-                <img src="{{animeEntry.images.jpg.image_url}}">
-            </a>
-        </div>
-    {% endfor %}
+<div>
+    <h1 class="display-6 text-center">Here are some popular anime!</h1>
+    <div class="row row-cols-1 row-cols-md-1 g-4">
+        {% for animeEntry in anime.data %}
+            <div class="card border-dark mb-3 text-center" style="max-width: 800px">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{animeEntry.images.jpg.large_image_url}}" class="img-fluid rounded-start">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{animeEntry.title}}</h5>
+                                <p class="card-text" style="max-height: 250px">
+                                    {{animeEntry.synopsis}}
+                                </p>
+                            <div class="row align-items-end">
+                                {% for genre in animeEntry.genres %}
+                                    <div class="col">
+                                        <p class="card-text"><small class="text-muted">{{genre.name}}</small></p>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- place synopsis here on show page -->
+                </div>
+                <a href="/anime/{{animeEntry.mal_id}}" class="btn btn-secondary">
+                    View
+                </a>
+            </div>
+        {% endfor %}
+    </div>    
+</div>
+
+
+    <!-- <h1>Here are some popular anime!</h1>
+    <div class="row">
+        <div class="col-sm-6">
+                {% for animeEntry in anime.data %}
+                    <div class="card" style="width: 18rem">
+                        <img src="{{animeEntry.images.jpg.image_url}}" class="card-img-top">
+                        <div class="card-body">
+                            <h3 class="card-text">{{animeEntry.title}}</h3>
+                        </div>
+                        <a href="/anime/{{animeEntry.mal_id}}" class="btn btn-info">View</a>
+                    </div>
+                {% endfor %}
+            </div>    
+        </div>     -->
 
 {% endblock %}
