@@ -2,8 +2,19 @@ body {
     background-color: rgb(61, 61, 61);
 }
 
-a {
-    margin: 5px;
+#search-bar {
+    margin: auto;
+    float: right;
+    max-width: 350px;
+}
+
+#home {
+    font-size: 30px;
+}
+
+.nav-link {
+    margin: 10px;
+    
 }
 
 h1 {
