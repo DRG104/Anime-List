@@ -8,12 +8,12 @@
     <h3>{{list.name}}</h3>
     {% for anime in list.anime %}
         <div class="card" style="width: 18rem">
-            <h3>Mal ID is: {{anime.mal_id}}</h3>
-            <!-- <h3>Info is:{{data.data[0].images.jpg.image_url}}</h3> -->
             <h3>Anime Title is: {{anime.title}}</h3>
-            <a href="/anime/{{anime.mal_id}}">
-                <img src="{{anime.image}}">
-            </a>
+            <img src="{{anime.image}}">
+            <a href="/anime/{{anime.mal_id}}" class="btn btn-info">View</a>
+            <form action="/anime/delete/{{list._id}}/{{anime._id}}?_method=DELETE" method="POST">
+                <input type="submit" value="Delete" class="btn btn-danger">
+            </form>
         </div>
     {% endfor %}
     

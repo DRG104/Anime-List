@@ -20,13 +20,50 @@ const Anime = require('../models/anime')
 ////////////////////////////////////////////
 // Routes
 ////////////////////////////////////////////
-// router.post('/:animeId', (req, res) => {
-//     // check mongo shell or db.collections to find animeId or userId
+// router.delete('/delete/:listId/:animeId', (req, res) => {
 //     const animeId = req.params.animeId
-//     req.body.author = req.session.userId
-
-    
+//     const listId = req.params.listId
+//     console.log("Check me out", animeId)
+//     List.findById(listId)
+//         .then(list => {
+//             List.findByIdAndRemove(animeId)
+//                 .then(list => {
+//                     list.save()
+//                 })
+//                 // const animeEntry = list.anime.id(animeId)
+//                 // animeEntry.remove()
+//                 // res.redirect('/list/mine/:id')
+//                 .then(list => {
+//                     res.redirect(`/list/mine/:listId`)
+//                 })
+//                 .catch(err=> {
+//                     res.json(err)
+//                 })
+//         })
+//         .catch(err => {
+//             res.json(err)
+//         })
 // })
+
+router.delete('/delete/:listId/:animeId', (req, res) => {
+    const animeId = req.params.animeId
+    const listId = req.params.listId
+    // console.log(listId)
+    List.findById(listId)
+        .then(list => {
+            // console.log(list.anime)
+            list.anime.remove(animeId)
+            list.save()
+            res.redirect(`/list/mine/${listId}`)
+            // const animeEntry = list.anime
+            // animeEntry.remove(animeId)
+            // list.save()
+            // res.redirect('/list/mine/:listId')
+        })
+        .catch(err => {
+            res.json(err)
+        })
+})
 
 
 // new create page where you can pick a list and add anime
@@ -124,8 +161,8 @@ router.post('/create', (req, res) => {
             List.findById(req.body.list)
                 .then(list => {
                     list.anime.push(anime._id)
-                    console.log("This is an anime", anime)
-                    console.log("This is a list", list)
+                    // console.log("This is an list", list)
+                    // console.log("This is a anime", anime)
                     list.save()
                     res.redirect(`/list/mine/${list._id}`)
                 })
