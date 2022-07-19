@@ -16,6 +16,24 @@
             </form>
         </div>
     {% endfor %}
-    
+    <div class="col-md-6">
+        <form action="/comments/{{list._id}}" method="POST">
+            <fieldset>
+                <legend>Add comment</legend>
+                <label class="form-label">Comment: </label>
+                <input type="text" class="form-control" name="note" placeholder="Enter comment here">
+            </fieldset>
+            <input type="submit" class="btn btn-success" value="Add comment">
+        </form>
+    </div>
+    {% if list.comments.length > 0 %}
+        <div class="container-sm justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                {% for comment in list.comments %}
+                {% render '../comment.liquid' comment: comment, userId: userId, list: list, username: username %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 
 {% endblock %}

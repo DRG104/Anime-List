@@ -30,6 +30,7 @@ const MongoStore = require('connect-mongo')
 const animeRoutes = require('./controller/anime_routes')
 const userRoutes = require('./controller/user_routes')
 const listRoutes = require('./controller/list_routes')
+const commentRoutes = require('./controller/comment_routes')
 
 // here's the middle ware that sets up our sessions
 app.use(
@@ -51,6 +52,7 @@ app.use(
 app.use('/anime', animeRoutes)
 app.use('/users', userRoutes)
 app.use('/list', listRoutes)
+app.use('/comments', commentRoutes)
 
 
 // localhost:3000/
@@ -58,6 +60,7 @@ app.get('/', (req, res) => {
 	// res.send('your server is running, better go catch it')
 	res.redirect('/anime')
 })
+
 
 
 ////////////////////////////////////////////

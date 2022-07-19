@@ -22,11 +22,9 @@
     <h1>Here are some popular anime!</h1>
     {% for animeEntry in anime.data %}
         <div class="card" style="width: 18rem">
-            <h3>Mal ID is: {{animeEntry.mal_id}}</h3>
-            <!-- <h3>Info is:{{data.data[0].images.jpg.image_url}}</h3> -->
-            <h3>Anime Title is:{{animeEntry.title}}</h3>
+            <h3>{{animeEntry.title}}</h3>
             <a href="/anime/{{animeEntry.mal_id}}">
-                <img src="{{animeEntry.images.jpg.image_url}}" width="286" height="340">
+                <img src="{{animeEntry.images.jpg.image_url}}">
             </a>
         </div>
     {% endfor %}
