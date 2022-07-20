@@ -67,6 +67,6 @@ app.get('/', (req, res) => {
 // Server Listener
 ////////////////////////////////////////////
 const PORT = process.env.PORT
-app.listen(PORT, () => {
+app.listen((process.env.PORT || 3000), () => {
 	console.log(`We are watching: ${PORT}`)
 })
