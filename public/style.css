@@ -25,10 +25,15 @@ body {
     margin: 10px;
 }
 
+#inner-card {
+    padding: 10px;
+}
+
 .nav-link {
     margin: 10px;
-    
 }
+
+
 
 h1 {
     color: white;
@@ -49,13 +54,15 @@ img {
     overflow: auto;
 }
 
-img {
+#img-id {
     padding-top: 10px;
 }
 
 #synopsis {
     border-bottom: 1px ridge gray;
+    border-bottom: 1px ridge gray;
     padding-bottom: 10px;
+    font-size: 18px;
 }
 
 .card-title {
@@ -65,12 +72,17 @@ img {
 .extra-info {
     text-align: left;
     border-top: 1px ridge gray;
+    border-bottom: 1px ridge gray;
     margin-top: 10px;
     padding-top: 10px;
 }
 
 .button {
     padding: 10px;
+}
+
+.list-show-container {
+    padding-bottom: 10px;
 }
 
 #list-button {

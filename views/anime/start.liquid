@@ -10,12 +10,12 @@
             <div class="card border-dark mb-3 text-center" style="max-width: 800px">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="{{animeEntry.images.jpg.large_image_url}}" class="img-fluid rounded-3">
+                        <img src="{{animeEntry.images.jpg.large_image_url}}" class="img-fluid rounded-3" id="img-id">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">{{animeEntry.title}}</h5>
-                                <p class="card-text" style="max-height: 250px">
+                                <p class="card-text" id="synopsis" style="max-height: 250px">
                                     {{animeEntry.synopsis}}
                                 </p>
                             <div class="row align-items-end">
@@ -27,19 +27,28 @@
                                 {% for theme in animeEntry.themes %}
                                     <div class="col-md-4">
                                         <p class="card-text fs-6"><small class="text-muted">{{theme.name}}</small></p>
+
                                     </div>
+
                                 {% endfor %}
+
                             </div>
+
                         </div>
+
                     </div>
-                    <!-- place synopsis here on show page -->
+                    
                 </div>
                 <a href="/anime/{{animeEntry.mal_id}}" class="btn btn-secondary" id="view-button">
                     View
                 </a>
+
             </div>
+
         {% endfor %}
+
     </div>    
+
 </div>
 
 

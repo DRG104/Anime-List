@@ -2,28 +2,28 @@
 {% block content %}
 
 
-<div class="conatiner-md">
-    <form action="/users/signup" method="POST">
-        <fieldset>
-            <legend style="color: white">New User</legend>
-            <label class="form-label" style="color: white">Username:</label>
+<div class="container-md">
+        <form action="/users/signup" method="POST">
+            <fieldset>
+                <legend style="color: white">New User</legend>
+                <label class="form-label" style="color: white">Username:</label>
+                <input 
+                    type="text" 
+                    name="username" 
+                    class="form-control"
+                >
+                <label class="form-label" style="color: white">Password:</label>
+                <input 
+                    type="password" 
+                    name="password" 
+                    class="form-control"
+                >
+            </fieldset>
             <input 
-                type="text" 
-                name="username" 
-                class="form-control"
+                type="submit" 
+                value="Create Account" 
+                class="btn btn-success"
             >
-            <label class="form-label" style="color: white">Password:</label>
-            <input 
-                type="password" 
-                name="password" 
-                class="form-control"
-            >
-        </fieldset>
-        <input 
-            type="submit" 
-            value="Create Account" 
-            class="btn btn-success"
-        >
-    </form>
+        </form>
 </div>
 {% endblock %}

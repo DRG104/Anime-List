@@ -5,7 +5,35 @@
 <!-- needs remove button -->
 
 {% block content %}
-    <h3>{{list.name}}</h3>
+    <h1 class="display-6 text-center">{{list.name}}</h1>
+    <div class="row">
+        {% for anime in list.anime %}
+           <div class="card border-dark mb-3 text-center" style="width: 18rem">
+                <img 
+                    src="{{anime.image}}" 
+                    class="card-img"
+                >
+                <h5 class="card-title">{{anime.title}}</h5>
+                <div class="list-show-container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <a href="/anime/{{anime.mal_id}}" class="btn btn-success">View</a>
+                        </div>
+                        <div class="col-sm-6">
+                            <form action="/anime/delete/{{list._id}}/{{anime._id}}?_method=DELETE" method="POST">
+                                <input type="submit" value="Delete" class="btn btn-danger">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+           </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+<!-- {% block content %}
+<h3>{{list.name}}</h3>
     {% for anime in list.anime %}
         <div class="card" style="width: 18rem">
             <h3>Anime Title is: {{anime.title}}</h3>
@@ -35,5 +63,4 @@
             </div>
         </div>
     {% endif %}
-
-{% endblock %}
+{% endblock %} -->
