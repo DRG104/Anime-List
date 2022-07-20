@@ -1,8 +1,5 @@
 {% layout 'layout.liquid' %}
 
-<!-- this holds user's anime in a list -->
-<!-- needs a button to display anime on MAL -->
-<!-- needs remove button -->
 
 {% block content %}
     <h1 class="display-6 text-center">{{list.name}}</h1>
@@ -31,36 +28,3 @@
     </div>
 {% endblock %}
 
-
-<!-- {% block content %}
-<h3>{{list.name}}</h3>
-    {% for anime in list.anime %}
-        <div class="card" style="width: 18rem">
-            <h3>Anime Title is: {{anime.title}}</h3>
-            <img src="{{anime.image}}">
-            <a href="/anime/{{anime.mal_id}}" class="btn btn-info">View</a>
-            <form action="/anime/delete/{{list._id}}/{{anime._id}}?_method=DELETE" method="POST">
-                <input type="submit" value="Delete" class="btn btn-danger">
-            </form>
-        </div>
-    {% endfor %}
-    <div class="col-md-6">
-        <form action="/comments/{{list._id}}" method="POST">
-            <fieldset>
-                <legend>Add comment</legend>
-                <label class="form-label">Comment: </label>
-                <input type="text" class="form-control" name="note" placeholder="Enter comment here">
-            </fieldset>
-            <input type="submit" class="btn btn-success" value="Add comment">
-        </form>
-    </div>
-    {% if list.comments.length > 0 %}
-        <div class="container-sm justify-content-center">
-            <div class="col-md-8 col-lg-6">
-                {% for comment in list.comments %}
-                {% render '../comment.liquid' comment: comment, userId: userId, list: list, username: username %}
-                {% endfor %}
-            </div>
-        </div>
-    {% endif %}
-{% endblock %} -->

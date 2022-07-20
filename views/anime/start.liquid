@@ -3,68 +3,47 @@
 <!-- user starts on this page after logging in -->
 
 {% block content %}
-<div>
-    <h1 class="display-6 text-center">Here are some popular anime!</h1>
-    <div class="row row-cols-1 row-cols-md-1 g-4">
-        {% for animeEntry in anime.data %}
-            <div class="card border-dark mb-3 text-center" style="max-width: 800px">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="{{animeEntry.images.jpg.large_image_url}}" class="img-fluid rounded-3" id="img-id">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">{{animeEntry.title}}</h5>
-                                <p class="card-text" id="synopsis" style="max-height: 250px">
-                                    {{animeEntry.synopsis}}
-                                </p>
-                            <div class="row align-items-end">
-                                {% for genre in animeEntry.genres %}
-                                    <div class="col-md-4">
-                                        <p class="card-text"><small class="text-muted">{{genre.name}}</small></p>
-                                    </div>
-                                {% endfor %}
-                                {% for theme in animeEntry.themes %}
-                                    <div class="col-md-4">
-                                        <p class="card-text fs-6"><small class="text-muted">{{theme.name}}</small></p>
+    <div>
+        <h1 class="display-6 text-center">Here are some popular anime!</h1>
+        <div class="row row-cols-1 row-cols-md-1 g-4">
+            {% for animeEntry in anime.data %}
+                <div class="card border-dark mb-3 text-center" style="max-width: 800px">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{animeEntry.images.jpg.large_image_url}}" class="img-fluid rounded-3" id="img-id">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{animeEntry.title}}</h5>
+                                    <p class="card-text" id="synopsis" style="max-height: 250px">
+                                        {{animeEntry.synopsis}}
+                                    </p>
+                                <div class="row align-items-end">
+                                    {% for genre in animeEntry.genres %}
+                                        <div class="col-md-4">
+                                            <p class="card-text"><small class="text-muted">{{genre.name}}</small></p>
+                                        </div>
+                                    {% endfor %}
+                                    {% for theme in animeEntry.themes %}
+                                        <div class="col-md-4">
+                                            <p class="card-text fs-6"><small class="text-muted">{{theme.name}}</small></p>
 
-                                    </div>
+                                        </div>
 
-                                {% endfor %}
+                                    {% endfor %}
+
+                                </div>
 
                             </div>
 
                         </div>
-
+                        
                     </div>
-                    
+                    <a href="/anime/{{animeEntry.mal_id}}" class="btn btn-secondary" id="view-button">
+                        View
+                    </a>
                 </div>
-                <a href="/anime/{{animeEntry.mal_id}}" class="btn btn-secondary" id="view-button">
-                    View
-                </a>
-
-            </div>
-
-        {% endfor %}
-
-    </div>    
-
-</div>
-
-
-    <!-- <h1>Here are some popular anime!</h1>
-    <div class="row">
-        <div class="col-sm-6">
-                {% for animeEntry in anime.data %}
-                    <div class="card" style="width: 18rem">
-                        <img src="{{animeEntry.images.jpg.image_url}}" class="card-img-top">
-                        <div class="card-body">
-                            <h3 class="card-text">{{animeEntry.title}}</h3>
-                        </div>
-                        <a href="/anime/{{animeEntry.mal_id}}" class="btn btn-info">View</a>
-                    </div>
-                {% endfor %}
-            </div>    
-        </div>     -->
-
+            {% endfor %}
+        </div>    
+    </div>
 {% endblock %}

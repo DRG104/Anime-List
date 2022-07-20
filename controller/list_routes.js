@@ -63,12 +63,9 @@ router.get('/new', (req, res) => {
 
 // POST - let's CREATE the list **DONE
 router.post('/mine', (req, res) => {
-    // console.log(req.body, "we make the body")
     req.body.owner = req.session.userId
     List.create(req.body)
         .then(lists => {
-            // console.log(lists)
-            // problem here, keeps redirecting to show.liquid * fixed use ('/anime/list')
             res.redirect('/list/mine')
         })
         .catch(err => {
@@ -80,10 +77,7 @@ router.post('/mine', (req, res) => {
 router.get('/mine', (req, res) => {
     const userInfo = req.session.username
     List.find({ owner: req.session.userId })
-    // do Anime.find({})
         .then(lists => {
-            // console.log(lists, "this is a list list")
-            // can pass {list, anime}
             res.render('list/index', { lists, userInfo })
         })
         .catch(err => {
@@ -105,7 +99,5 @@ router.get('/mine/:id', (req, res) => {
             res.json(err)
         })
 })
-
-// req.body needed to find anime
 
 module.exports = router

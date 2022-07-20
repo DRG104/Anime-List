@@ -6,9 +6,7 @@ const commentSchema = new mongoose.Schema ({
         required: true
     },
     author: {
-        // single user
         type: mongoose.Schema.Types.ObjectId,
-        // string value from model creation
         ref: 'User'
     }
 }, {

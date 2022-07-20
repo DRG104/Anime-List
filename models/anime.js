@@ -1,4 +1,3 @@
-// using an already connected mongoose, not a fresh one from node_modules
 const mongoose = require('./connection')
 const commentSchema = require('./comment')
 
@@ -9,15 +8,9 @@ const animeSchema = new Schema({
     title: String,
     image: String,
     owner: {
-        // ObjectId = unique number when something is aded to database
-        // a single User's ._id field
         type: Schema.Types.ObjectId,
-        // User references user.js, which follows the userSchema model we made in user.js
-        // const User = model('User', userSchema)
         ref: 'User'
     },
-    // says a fruit can have many comments.
-    // comments are a sub doc of Fruit
     comments: [commentSchema]
     }, 
     {

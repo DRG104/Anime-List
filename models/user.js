@@ -7,8 +7,6 @@ const mongoose = require('./connection')
 /////////////////////////////////
 // define our user model
 /////////////////////////////////
-// pull the schema and model constructors from mongoose
-// here, we'll use destructuring syntax to accomplish this
 const { Schema, model } = mongoose
 
 // we'll make a user schema
@@ -24,7 +22,6 @@ const userSchema = new Schema ({
     }
 })
 
-// make a user model with the userSchema
 const User = model('User', userSchema)
 
 /////////////////////////////////

@@ -49,63 +49,41 @@ router.post('/signup', async (req, res) => {
         })
 })
 
-// two login routes
-// one GET to show the form
 router.get('/login', (req, res) => {
     res.render('users/login')
 })
-// one POST to login and create the session
+
 router.post('/login', async (req, res) => {
-    // take a look at our req obj
-    // console.log('this is the request object', req)
-    // destructure data from request body
     const { username, password } = req.body
-    // console.log('this is username', username)
-    // console.log('this is password', password)
     console.log('this is session', req.session)
 
-    // first we find the user
     User.findOne({ username })
         .then(async (user) => {
-            // we check if the user exists
-            // if they do, we'll compare the passwords to make sure it's correct
             if (user) {
-                // compare pw
-                // bcrypt.compare evaluates to a truthy or falsey value
                 const result = await bcrypt.compare(password, user.password)
 
                 if (result) {
-                    // if the comparison comes back truthy we store user properties in session
                     req.session.username = username
                     req.session.loggedIn = true
                     req.session.userId = user._id
-                    // redirect to the '/fruits' page
                     console.log('this is the session after login', req.session)
                     res.redirect('/anime')
                 } else {
-                    // for now send some json error
-                    // if the pw is correct,  we'll use the newly created session object
-                    // otherwise(pw incorrect) send an error message
                     res.json({ error: 'username or password incorrect' })
                 }
             } else {
-                // send an error if user doesn't exist
                 res.json({ error: 'user does not exist' })
             }
 
         })
-        // if they don't we'll redirect to the sign up page
         .catch(error => {
             console.log(error)
             res.json(error)
         })
 })
 
-// logout route
-// can be a GET that calls destroy on our session
-// we can add an 'are you sure' page if there is time
+
 router.get('/logout', (req, res) => {
-    // destroy the session and redirect to the main page
     req.session.destroy(ret => {
         console.log('this is the error in logout', ret)
         console.log('session has been destroyed')
@@ -113,13 +91,6 @@ router.get('/logout', (req, res) => {
         res.redirect('/anime')
     })
 })
-
-
-// const userInfo = req.session.username
-// res.render('/', {userInfo})
-
-// {% if userInfo %}
-// {% endif %}
 
 /////////////////////////////////
 // export our router
