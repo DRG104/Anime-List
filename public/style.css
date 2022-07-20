@@ -12,6 +12,19 @@ body {
     font-size: 30px;
 }
 
+#nav-text {
+    font-size: 18px;
+}
+
+#show-card {
+    position: relative;
+    top: 20px;
+}
+
+#view-button {
+    margin: 10px;
+}
+
 .nav-link {
     margin: 10px;
     
@@ -34,4 +47,32 @@ img {
 
 .card-text {
     overflow: auto;
+}
+
+img {
+    padding-top: 10px;
+}
+
+#synopsis {
+    border-bottom: 1px ridge gray;
+    padding-bottom: 10px;
+}
+
+.card-title {
+    border-bottom: 1px ridge gray;
+}
+
+.extra-info {
+    text-align: left;
+    border-top: 1px ridge gray;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.button {
+    padding: 10px;
+}
+
+#list-button {
+    padding-top: 10px;
 }
