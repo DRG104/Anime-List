@@ -129,29 +129,29 @@ This project aims to use the Jikan API, the unofficial mynanimelist API to allow
 ## Route Table
 
 |Name:|Path:|HTTP Verb|Purpose|
-|:---|:---|:---||:---|
+|:---|:---|:---|:---|
 |Anime|---|---|---|
-|Show|/:id|GET|Displays full information on anime from API|
-|Show|/search|POST|Finds then displays single anime from API query|
-|Show|/|GET|Display a list of popular anime|
-|Create|/create|POST|Adds anime to owned DB|
-|Destroy|/delete/:listId/:animeId|DELETE| Removes anime from user's list|
+|Show|`/:id`|GET|Displays full information on anime from API|
+|Show|`/search`|POST|Finds then displays single anime from API query|
+|Show|`/`|GET|Display a list of popular anime|
+|Create|`/create`|POST|Adds anime to owned DB|
+|Destroy|`/delete/:listId/:animeId`|DELETE| Removes anime from user's list|
 |List|---|---|---|
-|Index|/mine|GET|Shows all of user's made list(s)|
-|Show|/mine/:id|GET|Shows the contents of a user's list|
-|Create|/mine|POST|Create a user's list|
-|Edit|/mine/:id/edit|GET|Display user's edit list form|
-|Update|/mine/:id|PUT|Updates a user's list|
-|Destroy|/mine/:id|DELETE|Deletes a user's list|
+|Index|`/mine`|GET|Shows all of user's made list(s)|
+|Show|`/mine`/:id|GET|Shows the contents of a user's list|
+|Create|`/mine`|POST|Create a user's list|
+|Edit|`/mine/:id/edit`|GET|Display user's edit list form|
+|Update|`/mine/:id`|PUT|Updates a user's list|
+|Destroy|`/mine/:id`|DELETE|Deletes a user's list|
 |User|---|---|---|
-|New|/signup|GET|Shows form to make new user
-|Create|/signup|Creates a new user in DB|
-|Show|/login|GET|Renders user login page|
-|Create|/login|POST|Logs in user then redirects|
-|Show|/logout|GET|Logs user out then redirects|
+|New|`/signup`|GET|Shows form to make new user
+|Create|`/signup`|POST|Makes DB request for user|
+|Show|`/login`|GET|Renders user login page|
+|Create|`/login`|POST|Logs in user then redirects|
+|Show|`/logout`|GET|Logs user out then redirects|
 |Comments|---|---|---|
-|Create|/:listId|POST|Creates a comment in a user's list|
-|Destroy|/delete/:listId/:commId|DELETE|Removes a comment|
+|Create|`/:listId`|POST|Creates a comment in a user's list|
+|Destroy|`/delete/:listId/:commId`|DELETE|Removes a comment|
 
 
 ## Initial model ideas
